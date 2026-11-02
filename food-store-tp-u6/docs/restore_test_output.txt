@@ -1,0 +1,37 @@
+[2026-11-02 16:58:46] [INFO] ==========================================================
+[2026-11-02 16:58:46] [INFO] SIMULACRO DE DESASTRE Y RECUPERACION CONTRA RELOJ
+[2026-11-02 16:58:46] [INFO] Host: localhost | Puerto: 5432 | Usuario: postgres | Base Destino: foodstore_restore_test
+[2026-11-02 16:58:46] [INFO] Archivo Log: C:\Users\maxim\Desktop\Antigravity\food-store-tp-u6\logs\restore_test_20261102_165846.log
+[2026-11-02 16:58:46] [INFO] ==========================================================
+[2026-11-02 16:58:46] [INFO] Respaldo seleccionado: C:\Users\maxim\Desktop\Antigravity\food-store-tp-u6\backups\foodstore_20261102_165455.dump
+[2026-11-02 16:58:46] [INFO] Tamano del respaldo: 3.25 MB
+[2026-11-02 16:58:46] [INFO] Fecha/Hora de creacion del dump: 2026-11-02 16:54:56
+[2026-11-02 16:58:46] [INFO] RPO Observado (antiguedad al inicio): 3.83 minutos (0.06 horas)
+[2026-11-02 16:58:46] [INFO] ----------------------------------------------------------
+[2026-11-02 16:58:46] [INFO] INICIANDO CRONOMETRO DE RECUPERACION (MEDICION DE RTO)...
+[2026-11-02 16:58:46] [INFO] ----------------------------------------------------------
+[2026-11-02 16:58:46] [INFO] Preparando entorno descartable: verificando si 'foodstore_restore_test' existe...
+[2026-11-02 16:58:47] [INFO] Ejecutando createdb foodstore_restore_test...
+[2026-11-02 16:58:48] [INFO] Ejecutando pg_restore sobre foodstore_restore_test...
+[2026-11-02 16:58:50] [INFO] Restauracion de estructura y datos finalizada.
+[2026-11-02 16:58:50] [INFO] Ejecutando validaciones minimas de integridad sobre foodstore_restore_test...
+[2026-11-02 16:58:51] [INFO] ----------------------------------------------------------
+[2026-11-02 16:58:51] [INFO] FIN DEL SIMULACRO - CRONOMETRO DETENIDO
+[2026-11-02 16:58:51] [INFO] RTO OBSERVADO (Tiempo total de recuperacion): 4.45 segundos
+[2026-11-02 16:58:51] [INFO] ----------------------------------------------------------
+[2026-11-02 16:58:51] [INFO] RESULTADOS DE VALIDACION:
+[2026-11-02 16:58:51] [INFO] Conteo de filas recuperadas:
+[2026-11-02 16:58:51] [INFO]   - Tabla/Vista categoria : 10 filas
+[2026-11-02 16:58:51] [INFO]   - Tabla/Vista cliente : 10000 filas
+[2026-11-02 16:58:51] [INFO]   - Tabla/Vista detalle_pedido : 240000 filas
+[2026-11-02 16:58:51] [INFO]   - Tabla/Vista pedido : 80000 filas
+[2026-11-02 16:58:51] [INFO]   - Tabla/Vista producto : 20000 filas
+[2026-11-02 16:58:51] [INFO] Control de integridad semantica de productos:
+[2026-11-02 16:58:51] [INFO]   - Productos con precio < 0 o stock < 0: 0 (esperado: 0)
+[2026-11-02 16:58:51] [INFO] Control de integridad semantica de detalle_pedido:
+[2026-11-02 16:58:51] [INFO]   - Detalles con cantidad <= 0 o precio_unitario < 0: 0 (esperado: 0)
+[2026-11-02 16:58:51] [INFO] ==========================================================
+[2026-11-02 16:58:51] [INFO] VEREDICTO FINAL: SIMULACRO EXITOSO (100% VALIDADO)
+[2026-11-02 16:58:51] [INFO] RPO Observado: 3.83 minutos
+[2026-11-02 16:58:51] [INFO] RTO Observado: 4.45 segundos
+[2026-11-02 16:58:51] [INFO] ==========================================================

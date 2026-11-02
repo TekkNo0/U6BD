@@ -1,0 +1,18 @@
+# Entorno / editor
+*.tmp
+*.bak
+*.log.bak
+__pycache__/
+*.pyc
+
+# Archivos de sistema
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Logs temporales de prueba
+logs/temp_*.log
+food-store-tp-u6/logs/temp_*.log
+
+# Notas: los logs y evidencias (.txt / .log / .dump) SÍ se versionan a propósito,
+# porque son parte de los entregables y evidencias del TP de laboratorio.

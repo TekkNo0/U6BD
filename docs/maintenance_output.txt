@@ -1,0 +1,49 @@
+﻿======================================================================
+PASO 1: REVISI├ôN DE CONFIGURACI├ôN DEL DEMONIO AUTOVACUUM
+======================================================================
+              name               | setting | unit |                                                           short_desc                                                           
+---------------------------------+---------+------+--------------------------------------------------------------------------------------------------------------------------------
+ autovacuum                      | on      |      | Iniciar el subproceso de autovacuum.
+ autovacuum_analyze_scale_factor | 0.1     |      | N├║mero m├¡nimo de inserciones, actualizaciones y eliminaciones de tuplas antes de ejecutar analyze, como fracci├│n de reltuples.
+ autovacuum_analyze_threshold    | 50      |      | N├║mero m├¡nimo de inserciones, actualizaciones y eliminaciones de tuplas antes de ejecutar analyze.
+ autovacuum_naptime              | 60      | s    | Tiempo de descanso entre ejecuciones de autovacuum.
+ autovacuum_vacuum_scale_factor  | 0.2     |      | N├║mero de updates o deletes de tuplas antes de ejecutar un vacuum, como fracci├│n de reltuples.
+ autovacuum_vacuum_threshold     | 50      |      | N├║mero m├¡nimo de updates o deletes antes de ejecutar vacuum.
+(6 filas)
+
+======================================================================
+PASO 2: DIAGN├ôSTICO PREVIO - ESTADO DE TABLAS Y UMBRAL DE VACUUM
+======================================================================
+              tabla               | tuplas_vivas | tuplas_muertas | umbral_autovacuum_estimado |          last_vacuum          |        last_autovacuum        |         last_analyze          |       last_autoanalyze        
+----------------------------------+--------------+----------------+----------------------------+-------------------------------+-------------------------------+-------------------------------+-------------------------------
+ detalle_pedido                   |       240000 |              0 |                      48050 | 2026-11-02 16:56:28.60969-03  | 2026-11-02 16:53:25.605448-03 | 2026-11-02 16:56:28.646394-03 | 2026-11-02 16:53:25.764078-03
+ pedido                           |        80000 |              0 |                      16050 | 2026-11-02 16:56:28.360122-03 | 2026-11-02 16:53:24.74409-03  | 2026-11-02 16:56:28.472074-03 | 2026-11-02 16:53:24.958424-03
+ producto                         |        20000 |              0 |                       4050 | 2026-11-02 16:56:28.043642-03 | 2026-11-02 16:53:25.027316-03 | 2026-11-02 16:56:28.190679-03 | 2026-11-02 16:53:25.196575-03
+ usuario                          |        10000 |              0 |                       2050 | 2026-11-02 16:56:28.193297-03 | 2026-11-02 16:53:25.231674-03 | 2026-11-02 16:56:28.312048-03 | 2026-11-02 16:53:25.357989-03
+ mv_facturacion_mensual_categoria |          210 |              0 |                         92 |                               |                               |                               | 2026-11-02 16:53:25.765964-03
+ categoria                        |           10 |              0 |                         52 | 2026-11-02 16:56:28.009216-03 |                               | 2026-11-02 16:56:28.011999-03 | 
+ auditoria_estado_pedido          |            2 |              0 |                         50 |                               |                               |                               | 
+ auditoria_actualizacion_precio   |            0 |              0 |                         50 |                               |                               |                               | 
+(8 filas)
+
+======================================================================
+PASO 3: EJECUCI├ôN DE MANTENIMIENTO CONCURRENTE SEGURO Y JUSTIFICADO
+======================================================================
+Iniciando VACUUM (ANALYZE, VERBOSE) en tablas cr├¡ticas de Food Store...
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+======================================================================
+PASO 4: VERIFICACI├ôN POST-MANTENIMIENTO
+======================================================================
+     tabla      | tuplas_vivas | tuplas_muertas |      fecha_ultimo_vacuum      |     fecha_ultimo_analyze      
+----------------+--------------+----------------+-------------------------------+-------------------------------
+ categoria      |           10 |              0 | 2026-11-02 16:56:36.970437-03 | 2026-11-02 16:56:36.971724-03
+ detalle_pedido |       240000 |              0 | 2026-11-02 16:56:37.547548-03 | 2026-11-02 16:56:37.580911-03
+ pedido         |        80000 |              0 | 2026-11-02 16:56:37.292933-03 | 2026-11-02 16:56:37.404211-03
+ producto       |        20000 |              0 | 2026-11-02 16:56:37.004967-03 | 2026-11-02 16:56:37.14288-03
+ usuario        |        10000 |              0 | 2026-11-02 16:56:37.145803-03 | 2026-11-02 16:56:37.25465-03
+(5 filas)
+

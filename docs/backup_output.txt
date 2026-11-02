@@ -1,0 +1,14 @@
+[2026-11-02 16:54:55] [INFO] ==========================================================
+[2026-11-02 16:54:55] [INFO] INICIO DE RESPALDO AUTOMATIZADO - FOOD STORE
+[2026-11-02 16:54:55] [INFO] Host: localhost | Puerto: 5432 | Usuario: postgres | DB: foodstore
+[2026-11-02 16:54:55] [INFO] Destino Dump: C:\Users\maxim\Desktop\Antigravity\food-store-tp-u6\backups\foodstore_20261102_165455.dump
+[2026-11-02 16:54:55] [INFO] Destino Log:  C:\Users\maxim\Desktop\Antigravity\food-store-tp-u6\logs\backup_foodstore_20261102_165455.log
+[2026-11-02 16:54:55] [INFO] ==========================================================
+[2026-11-02 16:54:56] [INFO] Binario pg_dump detectado: C:\Program Files\PostgreSQL\17\bin\pg_dump.exe
+[2026-11-02 16:54:56] [INFO] Ejecutando comando: & "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe" -h localhost -p 5432 -U postgres -d foodstore -Fc -f C:\Users\maxim\Desktop\Antigravity\food-store-tp-u6\backups\foodstore_20261102_165455.dump
+[2026-11-02 16:54:57] [INFO] RESPALDO COMPLETADO EXITOSAMENTE
+[2026-11-02 16:54:57] [INFO] Archivo generado: C:\Users\maxim\Desktop\Antigravity\food-store-tp-u6\backups\foodstore_20261102_165455.dump
+[2026-11-02 16:54:57] [INFO] Tamaño: 3405838 bytes (3.25 MB)
+[2026-11-02 16:54:57] [INFO] Duración total: 1.03 segundos
+[2026-11-02 16:54:57] [INFO] Código de salida: 0
+[2026-11-02 16:54:57] [INFO] ==========================================================
