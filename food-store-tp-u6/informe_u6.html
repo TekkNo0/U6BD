@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Informe Post-Incidente - Unidad 6 - Food Store</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 10mm 14mm 10mm 14mm;
+  }
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1e293b;
+    font-size: 8.8pt;
+    line-height: 1.35;
+    background: #fff;
+  }
+  header {
+    border-bottom: 2px solid #2563eb;
+    padding-bottom: 5px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .header-left h1 {
+    font-size: 13.5pt;
+    color: #0f172a;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .header-left .sub {
+    font-size: 8.5pt;
+    color: #475569;
+    font-weight: 500;
+  }
+  .header-right {
+    text-align: right;
+    font-size: 7.5pt;
+    color: #64748b;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    padding: 6px 8px;
+  }
+  .card h2 {
+    font-size: 8.5pt;
+    color: #1e40af;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #cbd5e1;
+    padding-bottom: 2px;
+  }
+  .metric-box {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3px;
+  }
+  .metric-label {
+    font-weight: 600;
+    color: #334155;
+  }
+  .metric-val {
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    color: #0f172a;
+    font-weight: 600;
+  }
+  .badge-success {
+    background: #dcfce7;
+    color: #166534;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 7.5pt;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 3px;
+    font-size: 8pt;
+  }
+  th, td {
+    padding: 3px 6px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  th {
+    background: #f1f5f9;
+    font-weight: 600;
+    color: #475569;
+    font-size: 7.5pt;
+    text-transform: uppercase;
+  }
+  .section-title {
+    font-size: 9pt;
+    font-weight: 700;
+    color: #1e40af;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin: 6px 0 3px 0;
+    display: flex;
+    align-items: center;
+  }
+  .section-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #cbd5e1;
+    margin-left: 6px;
+  }
+  p {
+    margin-bottom: 4px;
+    text-align: justify;
+  }
+  ul {
+    margin-left: 14px;
+    margin-bottom: 4px;
+  }
+  li {
+    margin-bottom: 2px;
+  }
+  code {
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 7.8pt;
+    background: #f1f5f9;
+    padding: 1px 3px;
+    border-radius: 2px;
+    color: #0f172a;
+  }
+  .footer {
+    margin-top: 6px;
+    padding-top: 4px;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 7.2pt;
+    color: #94a3b8;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <h1>Informe Post-Incidente: Simulacro de Recuperación</h1>
+    <div class="sub">Unidad 6: Mantenimiento, Respaldo y Recuperación · Base de Datos II</div>
+  </div>
+  <div class="header-right">
+    <div><strong>Motor:</strong> PostgreSQL 17</div>
+    <div><strong>Alumno:</strong> Maximiliano Nardez</div>
+    <div><strong>Fecha:</strong> 2026-11-02</div>
+  </div>
+</header>
+
+<div class="grid-2">
+  <div class="card">
+    <h2>1. Respaldo Utilizado</h2>
+    <div class="metric-box"><span class="metric-label">Archivo:</span> <span class="metric-val">foodstore_20261102_165455.dump</span></div>
+    <div class="metric-box"><span class="metric-label">Formato:</span> <span class="metric-val">Custom (-Fc), 3.25 MB</span></div>
+    <div class="metric-box"><span class="metric-label">Timestamp creación:</span> <span class="metric-val">2026-11-02 16:54:56</span></div>
+    <div class="metric-box"><span class="metric-label">Base producción:</span> <span class="metric-val">foodstore (intacta)</span></div>
+  </div>
+
+  <div class="card">
+    <h2>2. Tiempos Operativos: RPO y RTO</h2>
+    <div class="metric-box"><span class="metric-label">RPO Previsto / Objetivo:</span> <span class="metric-val">&le; 24 horas (diario nocturno)</span></div>
+    <div class="metric-box"><span class="metric-label">RPO Observado (antigüedad):</span> <span class="metric-val" style="color:#047857;">3.83 minutos (0.06 h)</span></div>
+    <div class="metric-box"><span class="metric-label">RTO Previsto / Objetivo:</span> <span class="metric-val">&le; 10 minutos (admisible)</span></div>
+    <div class="metric-box"><span class="metric-label">RTO Observado (cronómetro):</span> <span class="metric-val" style="color:#047857;">4.45 segundos</span> <span class="badge-success">CUMPLIDO</span></div>
+  </div>
+</div>
+
+<div class="section-title">3. Resultado de Validaciones de Integridad y Restricciones Lógicas</div>
+<table>
+  <thead>
+    <tr>
+      <th>Entidad / Control Lógico</th>
+      <th>Filas / Resultado</th>
+      <th>Criterio de Aceptación</th>
+      <th>Veredicto</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>categoria</code></td>
+      <td><strong>10</strong> filas</td>
+      <td>Coincidencia 100% pre-respaldo</td>
+      <td><span class="badge-success">VALIDADO</span></td>
+    </tr>
+    <tr>
+      <td><code>cliente</code> (vista declarativa s/ <code>usuario</code>)</td>
+      <td><strong>10.000</strong> filas</td>
+      <td>Coincidencia 100% pre-respaldo</td>
+      <td><span class="badge-success">VALIDADO</span></td>
+    </tr>
+    <tr>
+      <td><code>producto</code></td>
+      <td><strong>20.000</strong> filas</td>
+      <td>Coincidencia 100% pre-respaldo</td>
+      <td><span class="badge-success">VALIDADO</span></td>
+    </tr>
+    <tr>
+      <td><code>pedido</code></td>
+      <td><strong>80.000</strong> filas</td>
+      <td>Coincidencia 100% pre-respaldo</td>
+      <td><span class="badge-success">VALIDADO</span></td>
+    </tr>
+    <tr>
+      <td><code>detalle_pedido</code></td>
+      <td><strong>240.000</strong> filas</td>
+      <td>Coincidencia 100% pre-respaldo</td>
+      <td><span class="badge-success">VALIDADO</span></td>
+    </tr>
+    <tr>
+      <td><strong>Productos inválidos</strong> (<code>precio &lt; 0 OR stock &lt; 0</code>)</td>
+      <td><strong>0</strong> registros</td>
+      <td>Cero absoluto exigido</td>
+      <td><span class="badge-success">VALIDADO</span></td>
+    </tr>
+    <tr>
+      <td><strong>Detalles inválidos</strong> (<code>cantidad &le; 0 OR precio_unitario &lt; 0</code>)</td>
+      <td><strong>0</strong> registros</td>
+      <td>Cero absoluto exigido</td>
+      <td><span class="badge-success">VALIDADO</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="section-title">4. Problemas Reales Encontrados y Solución Aplicada</div>
+<ul>
+  <li><strong>Mapeo de Entidad <code>cliente</code> vs. <code>usuario</code>:</strong> La consulta de validación unificada requería consultar <code>FROM cliente</code>, mientras que el modelo relacional canónico almacena a los clientes en la tabla <code>usuario</code>. Se solucionó creando la vista declarativa <code>CREATE VIEW cliente AS SELECT * FROM usuario;</code>, logrando compatibilidad total con el set de pruebas sin desnormalizar el modelo físico.</li>
+  <li><strong>Manejo de flujo en PowerShell 5.1:</strong> El comando <code>dropdb --if-exists</code> emitía un mensaje informativo en <code>stderr</code> cuando la base de destino no existía, interpretado como falla terminal por <code>$ErrorActionPreference = "Stop"</code>. Se solucionó aislando la invocación mediante <code>Start-Process</code> con captura controlada de salida y verificación explícita de códigos de retorno.</li>
+</ul>
+
+<div class="section-title">5. Mejoras Concretas para la Siguiente Ejecución</div>
+<ul>
+  <li><strong>Restauración Multihilo Concurrente:</strong> Incorporar el parámetro de paralelismo <code>-j 4</code> en <code>pg_restore</code> (soportado por el formato <code>-Fc</code>). En entornos con volúmenes productivos masivos (&gt; 50 GB), reduce el RTO en más de un 60% distribuyendo la reconstrucción de índices y tablas en cores paralelos.</li>
+  <li><strong>Validación Criptográfica de Integridad:</strong> Generar automáticamente un hash SHA-256 junto con cada archivo <code>.dump</code> para comprobar que el archivo no sufrió truncamiento o corrupción antes de lanzar el restore.</li>
+</ul>
+
+<div class="section-title">6. Asistencia con OpenCode y Verificación Humana</div>
+<p>
+OpenCode se utilizó como herramienta de asistencia para estructurar la primera versión de <code>SPEC_U6.md</code>, los scripts de PowerShell y las consultas de monitoreo. Toda propuesta de la IA fue sometida a rigurosa supervisión humana: se rechazó enfáticamente cualquier sugerencia de <code>VACUUM FULL</code> (sustituyéndola por <code>VACUUM (ANALYZE)</code> concurrente sin locks de bloqueo), se eliminó cualquier exposición de contraseñas forzando el uso de <code>PGPASSWORD</code> / <code>.pgpass</code>, y cada comando fue probado y verificado empíricamente en la base descartable <code>foodstore_restore_test</code> antes de su aprobación final.
+</p>
+
+<div class="footer">
+  <span>Tecnicatura Universitaria en Programación · Trabajo Práctico Unidad 6</span>
+  <span>Entregable Oficial: foodstore_restore_test 100% verificado</span>
+</div>
+
+</body>
+</html>
